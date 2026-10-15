@@ -52,7 +52,7 @@
 
     {
       "data": {
-        "url": "../topojson/ne_110m_admin_0_countries.topojson",
+        "url": "topojson/ne_110m_admin_0_countries.topojson",
         "format": {
           "type": "topojson",
           "feature": "ne_110m_admin_0_countries"
@@ -122,7 +122,7 @@
 
     {
       "data": {
-        "url": "../data/Largest running races dataset.csv"
+        "url": "data/Largest running races dataset.csv"
       },
 
       "transform": [

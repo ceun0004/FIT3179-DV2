@@ -86,7 +86,7 @@
     },
 
     {
-      "data": {"url": "../data/top_8_sports.csv", "format": {"type": "csv"}},
+      "data": {"url": "data/top_8_sports.csv", "format": {"type": "csv"}},
       "transform": [
         {
           "filter": "show_all || (datum['Age Group'] === '15-17' && ag_15_17) || (datum['Age Group'] === '18-24' && ag_18_24) || (datum['Age Group'] === '25-34' && ag_25_34) || (datum['Age Group'] === '35-44' && ag_35_44) || (datum['Age Group'] === '45-54' && ag_45_54) || (datum['Age Group'] === '55-64' && ag_55_64) || (datum['Age Group'] === '65+' && ag_65_plus)"
