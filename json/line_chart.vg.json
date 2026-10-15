@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Charity Run Organisers Registered per Month, by State (2020-2025)",
+
+  "data": {
+    "url": "../data/charity_fun_run_datadotgov_main.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+    {
+      "filter": "datum.Registration_Date && datum.State && indexof(['ACT','NSW','NT','QLD','SA','TAS','VIC','WA'], datum.State) >= 0"
+    },
+    {
+      "calculate": "datetime(toNumber(split(datum.Registration_Date, '/')[2]), toNumber(split(datum.Registration_Date, '/')[1]) - 1, toNumber(split(datum.Registration_Date, '/')[0]))",
+      "as": "reg_date"
+    },
+    {
+      "filter": "year(datum.reg_date) >= 2020 && year(datum.reg_date) <= 2025"
+    }
+  ],
+
+  "vconcat": [
+    {
+      "width": 800,
+      "height": 380,
+
+      "mark": {
+        "type": "line",
+        "point": true,
+        "strokeWidth": 2.5,
+        "clip": true
+      },
+
+      "encoding": {
+        "x": {
+          "field": "reg_date",
+          "type": "temporal",
+          "timeUnit": "yearmonth",
+          "title": "Month",
+          "scale": {"domain": {"param": "brush"}},
+          "axis": {"format": "%b %Y", "labelAngle": -45}
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "title": "Number of charity run events organised"
+        },
+        "color": {
+          "field": "State",
+          "type": "nominal",
+          "title": "State",
+          "scale": {
+            "domain": ["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
+            "scheme": "tableau10"
+          }
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "reg_date", "type": "temporal", "timeUnit": "yearmonth", "title": "Month", "format": "%b %Y"},
+          {"aggregate": "count", "type": "quantitative", "title": "Events organised"}
+        ]
+      }
+    },
+
+    {
+      "width": 800,
+      "height": 80,
+
+      "params": [
+        {
+          "name": "brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+
+      "mark": {
+        "type": "line",
+        "color": "#4C78A8",
+        "strokeWidth": 1.5
+      },
+
+      "encoding": {
+        "x": {
+          "field": "reg_date",
+          "type": "temporal",
+          "timeUnit": "yearmonth",
+          "title": "Drag to select a date range",
+          "axis": {"format": "%b %Y", "tickCount": 12}
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "title": "Total",
+          "axis": {"tickCount": 3, "grid": false}
+        }
+      }
+    }
+  ]
+}

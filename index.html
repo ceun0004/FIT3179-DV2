@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Community Fun Runs in Australia | Data Visualisations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore fun runs, charity walks and outdoor community events across Australia: participation, growth, seasonal timing and the health of our communities.">
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <div class="progress" id="progress"></div>
+
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="topnav">
+        <div class="topnav-inner">
+            <div class="brand"><span class="dot">🏃</span><span class="txt">Community Fun Runs</span></div>
+            <div class="nav-links" id="navLinks">
+                <a href="#global">Global Context</a>
+                <a href="#participation">Participation</a>
+                <a href="#local">Events &amp; Timing</a>
+                <a href="#health">Health Impact</a>
+                <a href="#takeaways">Takeaways</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+        <div class="hero-inner">
+            <span class="eyebrow">Data Visualisation Project</span>
+            <h1>Community <span>Fun Runs</span> &amp; Healthy Communities in Australia</h1>
+            <p class="lead">
+                Explore fun runs, charity walks and outdoor community events across Australia.
+                Compare participation, event growth and seasonal timing, and investigate how these
+                events help build healthier communities.
+            </p>
+            <div class="hero-cta">
+                <a class="btn btn-primary" href="#global">Start exploring</a>
+                <a class="btn btn-ghost" href="#takeaways">Jump to key findings</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ HEADLINE STATS ============ -->
+    <section class="stats">
+        <div class="stat reveal"><div class="num">184,236</div><div class="lbl">Runners in the world's largest event (Wings for Life World Run)</div></div>
+        <div class="stat reveal"><div class="num">229</div><div class="lbl">Charity run events in Victoria, July 2023 (state peak)</div></div>
+        <div class="stat reveal"><div class="num">4,554</div><div class="lbl">Charity runs held in winter, the busiest season (2020–2025)</div></div>
+        <div class="stat reveal"><div class="num">31.9%</div><div class="lbl">Highest youth running participation rate (Victoria)</div></div>
+    </section>
+
+    <main class="page">
+
+        <!-- ============ CHAPTER 1 ============ -->
+        <section class="chapter" id="global">
+            <div class="chapter-head reveal">
+                <div class="chapter-num">01</div>
+                <div>
+                    <h2>The Global Running Landscape</h2>
+                    <p>Before looking at Australia, see how mass-participation running events compare around the world by distance and size.</p>
+                </div>
+            </div>
+
+            <article class="card reveal">
+                <div class="card-title">
+                    <h3>World's Largest Running Events by Distance and Participation</h3>
+                    <span class="tag">Proportional symbol map</span>
+                </div>
+                <p class="card-sub">Bubble size shows the number of participants in each event.</p>
+                <div class="card-body split">
+                    <div id="symbol_map" class="vis-container" data-spec="json/proportional_symbol_graph.vg.json"></div>
+                    <aside class="insights">
+                        <h4>Key insights</h4>
+                        <ul>
+                            <li><b>Wings for Life World Run</b> leads globally with 184,236 participants.</li>
+                            <li>The <b>United States</b> leads all countries in total participant numbers.</li>
+                            <li><b>10 km</b> races attract the highest cumulative participation.</li>
+                            <li>The <b>marathon</b> (42.2 km) features the most listed races.</li>
+                            <li>The <b>Philippines</b> hosts the second-largest single race with 116,086 runners.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </article>
+        </section>
+
+        <!-- ============ CHAPTER 2 ============ -->
+        <section class="chapter" id="participation">
+            <div class="chapter-head reveal">
+                <div class="chapter-num">02</div>
+                <div>
+                    <h2>Who Runs in Australia?</h2>
+                    <p>Participation rates by state and age group, and how running compares with other popular sports.</p>
+                </div>
+            </div>
+
+            <article class="card reveal">
+                <div class="card-title">
+                    <h3>AUSPLAY Running Participation Rates by State and Age (2025)</h3>
+                    <span class="tag">Choropleth map</span>
+                </div>
+                <p class="card-sub">Darker shading indicates a higher share of the age group who run.</p>
+                <div class="card-body split">
+                    <div id="vis2" class="vis-container" data-spec="json/choropleth_map.vg.json"></div>
+                    <aside class="insights">
+                        <h4>Key insights</h4>
+                        <ul>
+                            <li>Participation <b>drops steadily</b> across older age groups.</li>
+                            <li><b>Victoria</b> records the highest single youth rate at 31.9%.</li>
+                            <li><b>Northern Territory</b> peaks in the 25–34 group (31.3%).</li>
+                            <li>Participation falls <b>below 3%</b> for seniors aged 65+.</li>
+                            <li><b>NSW/ACT</b> peaks in the 18–24 bracket (30.45%).</li>
+                        </ul>
+                    </aside>
+                </div>
+            </article>
+
+            <article class="card reveal">
+                <div class="card-title">
+                    <h3>Top Eight Sports Participation Rates by Age Group</h3>
+                    <span class="tag">Radar chart</span>
+                </div>
+                <p class="card-sub">How running and jogging stack up against other popular activities at each life stage.</p>
+                <div class="card-body split">
+                    <div id="vis3" class="vis-container" data-spec="json/radar_graph.vg.json"></div>
+                    <aside class="insights">
+                        <h4>Key insights</h4>
+                        <ul>
+                            <li><b>Walking</b> is the most popular activity, peaking at 66%.</li>
+                            <li><b>Gym and fitness</b> dominate among young adults aged 18–24.</li>
+                            <li><b>Basketball</b> drops sharply from youth to older ages.</li>
+                            <li><b>Golf</b> rises steadily into older age groups.</li>
+                            <li><b>Running and jogging</b> peak among adults aged 25–34.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </article>
+        </section>
+
+        <!-- ============ CHAPTER 3 ============ -->
+        <section class="chapter" id="local">
+            <div class="chapter-head reveal">
+                <div class="chapter-num">03</div>
+                <div>
+                    <h2>Events, Growth &amp; Seasonal Timing</h2>
+                    <p>Where community events happen in Brisbane, and when charity runs are organised across the states.</p>
+                </div>
+            </div>
+
+            <article class="card reveal">
+                <div class="card-title">
+                    <h3>Brisbane City Activity Events by Category (2026)</h3>
+                    <span class="tag">Dot map</span>
+                </div>
+                <p class="card-sub">Each dot is an event, coloured by category.</p>
+                <div class="card-body split">
+                    <div id="vis4" class="vis-container" data-spec="json/dot_map_graph.vg.json"></div>
+                    <aside class="insights">
+                        <h4>Event categories</h4>
+                        <dl class="legend-note">
+                            <dt>Running / Jogging</dt><dd>Running events, jogging, parkruns and marathons.</dd>
+                            <dt>Arts &amp; Culture</dt><dd>Exhibitions, museums, music, theatre and creative activities.</dd>
+                            <dt>Family &amp; Children</dt><dd>Children's activities, storytime, playgroups and family events.</dd>
+                            <dt>Festivals &amp; Community</dt><dd>Festivals, markets, celebrations and community events.</dd>
+                            <dt>Outdoor &amp; Recreation</dt><dd>Nature walks, gardens, outdoor activities, fitness and sports.</dd>
+                            <dt>Others</dt><dd>Consultation, educational webinars, business networking.</dd>
+                        </dl>
+                    </aside>
+                </div>
+            </article>
+
+            <article class="card reveal">
+                <div class="card-title">
+                    <h3>Monthly Charity Run Organiser Registrations by State (2020–2025)</h3>
+                    <span class="tag">Line chart</span>
+                </div>
+                <p class="card-sub">Registrations over time reveal strong annual cycles and event growth.</p>
+                <div class="card-body split">
+                    <div id="vis5" class="vis-container" data-spec="json/line_chart.vg.json"></div>
+                    <aside class="insights">
+                        <h4>Key insights</h4>
+                        <ul>
+                            <li><b>Victoria</b> peaked with 229 charity run events in July 2023.</li>
+                            <li><b>NSW</b> followed with 206 events in July 2023.</li>
+                            <li>Most states see a <b>sharp annual surge around July</b>.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </article>
+
+            <article class="card reveal">
+                <div class="card-title">
+                    <h3>Seasonal Distribution of Charity Runs by State (2020–2025)</h3>
+                    <span class="tag">Bar chart</span>
+                </div>
+                <p class="card-sub">Compare how each state schedules its charity runs across the four seasons.</p>
+                <div class="card-body split">
+                    <div id="vis6" class="vis-container" data-spec="json/mini_bar_chart.vg.json"></div>
+                    <aside class="insights">
+                        <h4>Key insights</h4>
+                        <ul>
+                            <li><b>NSW</b> hosted the most charity runs across all seasons.</li>
+                            <li>NSW reached a state record of <b>1,445 winter runs</b>.</li>
+                            <li><b>NT</b> recorded a minimum of 37 autumn charity runs.</li>
+                            <li><b>Winter</b> generated the highest total event count at 4,554.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </article>
+        </section>
+
+        <!-- ============ CHAPTER 4 ============ -->
+        <section class="chapter" id="health">
+            <div class="chapter-head reveal">
+                <div class="chapter-num">04</div>
+                <div>
+                    <h2>Why It Matters: Community Health</h2>
+                    <p>The health challenges that active, connected communities help to address.</p>
+                </div>
+            </div>
+
+            <article class="card reveal">
+                <div class="card-title">
+                    <h3>Long-Term Health Condition Prevalence by Australian State</h3>
+                    <span class="tag">Heat map</span>
+                </div>
+                <p class="card-sub">Darker cells show a higher prevalence of each condition in that state.</p>
+                <div class="card-body split">
+                    <div id="vis7" class="vis-container" data-spec="json/heatmap.vg.json"></div>
+                    <aside class="insights">
+                        <h4>Key insights</h4>
+                        <ul>
+                            <li><b>Mental conditions</b> are the most prevalent nationwide (26.1%).</li>
+                            <li><b>Tasmania</b> records the highest rates of multiple chronic conditions.</li>
+                            <li><b>Cancer, COPD and kidney disease</b> have the lowest prevalence.</li>
+                            <li><b>Queensland</b> reports the highest mental condition rate at 30.8%.</li>
+                            <li><b>Northern Territory</b> shows the lowest arthritis prevalence at 11.2%.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </article>
+
+            <article class="card reveal">
+                <div class="card-title">
+                    <h3>Types of Diseases in Australia (2018)</h3>
+                    <span class="tag">Tree map</span>
+                </div>
+                <p class="card-sub">Rectangle area shows the disease burden measured in DALYs.</p>
+                <div class="card-body split">
+                    <div id="vis8" class="vis-container" data-spec="json/tree_map.vg.json"></div>
+                    <aside class="insights">
+                        <h4>Key insights</h4>
+                        <ul>
+                            <li><b>Cancer and neoplasms</b> generated the highest group burden.</li>
+                            <li><b>Cardiovascular diseases</b> totalled over 550,000 DALYs.</li>
+                            <li><b>Coronary heart disease</b> remained the leading individual condition.</li>
+                            <li><b>Back pain</b> recorded a high individual burden of 222,357 DALYs.</li>
+                            <li><b>Oral disorders</b> were the smallest disease group.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </article>
+        </section>
+
+        <!-- ============ TAKEAWAYS ============ -->
+        <section class="takeaway reveal" id="takeaways">
+            <h2>Key Takeaways</h2>
+            <p>Together, the eight views show a clear story: running is popular, seasonal and strongest among younger adults, while chronic disease still places a heavy burden on the community.</p>
+            <div class="takeaway-grid">
+                <div class="takeaway-item">
+                    <h4>Participation peaks young</h4>
+                    <p>Running participation is highest from 18 to 34 and falls below 3% for people aged 65+, so there is room for more inclusive events.</p>
+                </div>
+                <div class="takeaway-item">
+                    <h4>Timing is seasonal</h4>
+                    <p>Charity runs surge around July and winter is the busiest season, with NSW and Victoria leading in volume.</p>
+                </div>
+                <div class="takeaway-item">
+                    <h4>Health need is real</h4>
+                    <p>Mental health conditions affect 26.1% of Australians and cardiovascular disease is a leading burden, making accessible community events valuable.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        Community Fun Runs · Data visualisation project built with Vega-Lite ·
+        Sources include AUSPLAY, the Australian Bureau of Statistics and the AIHW.
+    </footer>
+
+    <script>
+        /* ---------- Render visualisations lazily when they scroll into view ---------- */
+        var embedOpts = { actions: { export: true, source: false, compiled: false, editor: false }, renderer: "canvas" };
+
+        function embedVis(el) {
+            if (el.dataset.loaded) return;
+            el.dataset.loaded = "1";
+            el.classList.add("loading");
+            vegaEmbed(el, el.dataset.spec, embedOpts)
+                .then(function () { el.classList.remove("loading"); })
+                .catch(function (err) {
+                    console.error(err);
+                    el.classList.remove("loading");
+                    el.classList.add("error");
+                    el.textContent = "Could not load " + el.dataset.spec + ". Check the file path and run from a local server.";
+                });
+        }
+
+        var visObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) { embedVis(e.target); visObserver.unobserve(e.target); }
+            });
+        }, { rootMargin: "300px 0px" });
+        document.querySelectorAll(".vis-container").forEach(function (el) { visObserver.observe(el); });
+
+        /* ---------- Reveal-on-scroll ---------- */
+        var revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) { e.target.classList.add("in"); revealObserver.unobserve(e.target); }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll(".reveal").forEach(function (el) { revealObserver.observe(el); });
+
+        /* ---------- Scroll progress bar ---------- */
+        var progress = document.getElementById("progress");
+        window.addEventListener("scroll", function () {
+            var h = document.documentElement;
+            var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            progress.style.width = pct + "%";
+        }, { passive: true });
+
+        /* ---------- Active nav link ---------- */
+        var links = Array.from(document.querySelectorAll("#navLinks a"));
+        var sections = links.map(function (a) { return document.querySelector(a.getAttribute("href")); });
+        var navObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    links.forEach(function (a) {
+                        a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id);
+                    });
+                }
+            });
+        }, { rootMargin: "-40% 0px -55% 0px" });
+        sections.forEach(function (s) { if (s) navObserver.observe(s); });
+    </script>
+
+</body>
+
+</html>
